@@ -8,6 +8,7 @@ Ensure the following dependencies are installed:
 
 ```bash
 pip install torch==1.13.1+cu117 --extra-index-url https://download.pytorch.org/whl/cu117
+pip install rwkv
 ```
 
 
