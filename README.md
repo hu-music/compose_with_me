@@ -27,14 +27,14 @@ You can download the model checkpoints from the following link:
 
 **0.1 Convert MIDI to JSON**  
 
-Follow the instructions in [MIDI-LLM-tokenizer](https://github.com/briansemrau/MIDI-LLM-tokenizer) for converting MIDI files to JSON format:
+Follow the instructions in [MIDI-LLM-tokenizer](https://github.com/briansemrau/MIDI-LLM-tokenizer) for converting MIDI files to JSON format (under MIDI-LLM-tokenizer folder):
 
 ```bash
 python ./midi_to_jsonl.py --path test.zip --output test-midi.jsonl --workers 4
 ```
 **0.2 Convert JSON to IDXBIN**
 
-Follow the instructions in [Json2Binidx](https://github.com/Abel2076/json2binidx_tool) for converting the JSON files to IDXBIN format:
+Follow the instructions in [Json2Binidx](https://github.com/Abel2076/json2binidx_tool) for converting the JSON files to IDXBIN format (under json2binidx_tool folder):
 
 ```bash
 python tools/preprocess_data.py --input data/test-midi.jsonl --output-prefix data/test --vocab tokenizer-midi.json --dataset-impl mmap --tokenizer-type HFTokenizer --append-eod
