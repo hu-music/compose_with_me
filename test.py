@@ -24,8 +24,7 @@ def create_answer_sequence_array(sequence, start_indices, patch_size, sep_token=
         patch = sequence[start_idx:start_idx + patch_size]
         answer.extend(patch)
         answer.append(sep_token)
-    # Remove the last sep_token
-    answer = answer[:]
+    
     return np.array(answer)
 
 
@@ -69,7 +68,7 @@ def process_sequence_array(sequence, num_patches, ctx_len, mask_token=20096, sep
             final_sequence=np.array(torch.concat([new_sequence,torch.zeros(4096-new_sequence.shape[0],dtype=int)]))
         else:
             final_sequence = np.array(new_sequence)
-        # print('tessas!',final_sequence.shape)
+        
         final_sequence_all.append(final_sequence)
         patched_indices_all.append(patched_indices)
         non_patched_indices_all.append(non_patched_indices)
@@ -96,7 +95,7 @@ def main(args):
 
     train_data = MyDataset(args)
     if args.mjepa:
-        print('Using MJEPA!!!:')
+        print('MJEPA:')
         jepa_encoder = Encoder(args)
         jepa_predictor = Predictor(args)
         # print(self.jepa_encoder.state_dict())
@@ -111,7 +110,7 @@ def main(args):
 
     lis = np.random.randint(0, 900, 10) # test on 10 samples
     for j in lis:
-        for qq in range(3):
+        for qq in range(3): #generate three versions
             try:
                 a = train_data.__getitem__(j)
                 final_sequence, patched, non_patched = process_sequence_array(a.unsqueeze(0), 1, 4096)
@@ -148,12 +147,12 @@ def main(args):
                     for n in occurrence:
                         out[n] -= (0 + occurrence[n] * 0.5)
 
-                    out[0] += (i - 5000/1) / (500/1)  # not too short, not too long
+                    out[0] += (i - 2000/1) / (500/1)  # not too short, not too long
                     if args.patch_size>1000:
-                        out[20098] += (i - 1000/1) / (500/1)  # not too short, not too long
+                        out[20098] += (i - 2000/1) / (500/1)  # not too short, not too long
                     else:
-                        out[20098] += (i - 1000/4) / (500/4)  # not too short, not too long
-                    # out[20098] += (i - 1000/1) / (500/1)  # not too short, not too long
+                        out[20098] += (i - 1000/1) / (500/1)  # not too short, not too long
+                    # out[20098] += (i - 2000/1) / (500/1)  # not too short, not too long
 
                     out[127] -= 1  # avoid "t125"
                     out[20097] -= 1
