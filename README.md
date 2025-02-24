@@ -64,7 +64,7 @@ python finetune_rwkv.py --load_model "check_points/RWKV-4-MIDI-560M-v1-20230717-
 --patch_number 1 --load_jepa_path "check_points/mjepa/jepa-latest.pth.tar"
 ```
 
-**Option 2: Fine-tune with LoRA (Low-Rank Adaptation)**
+**Option 2: Fine-tune with LoRA**
 
 ```bash
 python finetune_rwkv.py --load_model "check_points/RWKV-4-MIDI-560M-v1-20230717-ctx4096.pth" \
